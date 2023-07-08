@@ -29,14 +29,14 @@ public class MessageServiceImpl implements MessageService{
 	}
 
 	@Override
-	public List<Message> getMessagesByFriendId(Integer friendId) {
+	public List<Message> getMessagesByFriendId(Long friendId) {
 
 		return messageRepository.findMessagesByFriendId(friendId);
 			
 	}
 
 	@Override
-	public List<Message> getMessagesByUserId(Integer userId) {
+	public List<Message> getMessagesByUserId(Long userId) {
 		
 	return messageRepository.findMessagesByUserId(userId);		
 	}

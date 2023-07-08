@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 import com.facebook.model.Message;
 
 @Repository
-public interface MessageRepository extends JpaRepository<Message, Integer>{
+public interface MessageRepository extends JpaRepository<Message, Long>{
 
 	@Query(value="select m from Message m LEFT JOIN User u on u.id = m.user.id where m.friend.id = (:friendId)")
-	List<Message> findMessagesByFriendId(@Param(value="friendId")Integer friendId);
+	List<Message> findMessagesByFriendId(@Param(value="friendId")Long friendId);
 	
 	@Query(value="select m from Message m LEFT JOIN User u on u.id = m.user.id where m.user.id = (:userId)")
-	List<Message> findMessagesByUserId(@Param(value="userId")Integer userId);
+	List<Message> findMessagesByUserId(@Param(value="userId")Long userId);
 }

@@ -2,6 +2,7 @@ package com.facebook.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,11 @@ public class LikeServiceImpl implements LikeService{
 	}
 
 	@Override
-	public List<Like> getUserLikesByMessageById(Integer timeId) {
-		return likeRepository.findUserLikesByMessageById(timeId);
+	public List<Like> getUserLikesByMessageById(Long timeId) {
+		List<Like> likes = likeRepository.findLikesByTimelineId(timeId);
+		if(CollectionUtils.isNotEmpty(likes)) {
+			return likeRepository.findUserLikesByMessageById(timeId);
+		}
+		return likes;
 	}
 }

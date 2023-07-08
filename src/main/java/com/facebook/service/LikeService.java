@@ -8,6 +8,6 @@ public interface LikeService {
 	
 	Like createLike(Like like);
 	
-	List<Like> getUserLikesByMessageById(Integer timeId);
+	List<Like> getUserLikesByMessageById(Long timeId);
 	
 }

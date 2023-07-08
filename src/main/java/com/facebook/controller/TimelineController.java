@@ -50,7 +50,7 @@ public class TimelineController {
 	public ResponseEntity <HttpGetStatusResponse> getAllMyTimelineById(@PathVariable Long id){
 	List<Timeline> timelines = timelineService.getAllMyTimelineById(id);
 	if(CollectionUtils.isEmpty(timelines)) {
-		return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.MY_TIMELINES_NOT_FOUND);
+		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(),timelines, Constants.TIMELINES_NOT_FOUND);
 	}
 	return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), timelines,Constants.MY_TIMELINE_FOUND );
 	}
@@ -59,7 +59,7 @@ public class TimelineController {
 	public ResponseEntity <HttpGetStatusResponse> getUserByFriendByTimelineById(@PathVariable(value = "userId") Long userId){
         List<Timeline> timelines = timelineService.getUserByFriendByTimelineById(userId);
         if(CollectionUtils.isEmpty(timelines)) {
-    		return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.TIMELINES_NOT_FOUND);
+    		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(),timelines, Constants.TIMELINES_NOT_FOUND);
     	}
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(),timelines,Constants.ALL_TIMELINE_FOUND);
 }

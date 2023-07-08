@@ -12,7 +12,7 @@ import com.facebook.model.FriendStatus;
 @Repository
 public interface FriendStatusRepository extends JpaRepository<FriendStatus, Integer>{
 
-	@Query("select fs from FriendStatus fs where fs.code=(:statusCode)")
+	@Query("select fs from FriendStatus fs where fs.name=(:statusCode)")
 	FriendStatus findByStatus(String statusCode);
 
 }

@@ -36,7 +36,7 @@ public class MessageController {
 	}
 	
 	@GetMapping("/friend/{friendId}")
-	public ResponseEntity<HttpGetStatusResponse> getMessagesByFriendId(@PathVariable(value="friendId") Integer friendId){
+	public ResponseEntity<HttpGetStatusResponse> getMessagesByFriendId(@PathVariable(value="friendId") Long friendId){
 		List<Message> messages = messageService.getMessagesByFriendId(friendId);
 		if(CollectionUtils.isEmpty(messages)) {
 			return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.MESSAGE_NOT_FOUND);
@@ -45,7 +45,7 @@ public class MessageController {
 	}
 	
 	@GetMapping("/user/{userId}")
-	public ResponseEntity<HttpGetStatusResponse> getMessagesByUserId(@PathVariable(value="userId") Integer userId){
+	public ResponseEntity<HttpGetStatusResponse> getMessagesByUserId(@PathVariable(value="userId") Long userId){
 		List<Message> messages = messageService.getMessagesByUserId(userId);
 		if(CollectionUtils.isEmpty(messages)) {
 			return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.MESSAGE_NOT_FOUND);

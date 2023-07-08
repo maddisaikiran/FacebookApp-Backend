@@ -10,10 +10,11 @@ import org.springframework.stereotype.Repository;
 import com.facebook.model.Like;
 
 @Repository
-public interface LikeRepository extends JpaRepository<Like, Integer>{
+public interface LikeRepository extends JpaRepository<Like, Long>{
 	
-@Query(value="select * from User u LEFT JOIN Liked l on u.id = l.user_id LEFT JOIN Timeline t on t.time_id = l.message_id where t.time_id =:timeId", nativeQuery = true)
-List <Like> findUserLikesByMessageById(@Param(value = "timeId") Integer timeId);
+@Query(value="select * from User u LEFT JOIN Like l on u.id = l.user.id LEFT JOIN Timeline t on t.id = l.timeline.id where t.id =:timeId", nativeQuery = true)
+List <Like> findUserLikesByMessageById(@Param(value = "timeId") Long timeId);
 
-
+@Query("FROM Like l WHERE l.timeline.id =:timeId")
+    List<Like> findLikesByTimelineId(@Param(value = "timeId") Long timeId);
 }

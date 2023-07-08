@@ -43,7 +43,7 @@ public class UserNetworkController {
 	public ResponseEntity <HttpGetStatusResponse> getUserByFriendByOrderStatusById(@PathVariable(value = "friendId") Long friendId){
 		List<User> users = service.getUserByFriendByOrderStatusById(friendId);
 		if(CollectionUtils.isEmpty(users)) {
-			return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.FRIENDS_NOT_FOUND);
+			return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(),users, Constants.FRIENDS_NOT_FOUND);
 		}
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), users,Constants.MY_FRIENDS_FOUND);
 	}

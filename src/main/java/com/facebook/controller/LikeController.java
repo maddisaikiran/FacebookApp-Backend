@@ -37,7 +37,7 @@ public class LikeController {
 	
 	
 	@GetMapping("/time/{timeId}")
-	public ResponseEntity<HttpGetStatusResponse> getUserLikesByMessageById(@PathVariable(value = "timeId") Integer timeId) {
+	public ResponseEntity<HttpGetStatusResponse> getUserLikesByMessageById(@PathVariable(value = "timeId") Long timeId) {
 		List<Like> likes = likeService.getUserLikesByMessageById(timeId);
 		if(CollectionUtils.isEmpty(likes)) {
 			return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.LIKES_NOT_FOUND);
